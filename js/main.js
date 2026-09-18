@@ -79,6 +79,8 @@ const highlightGrid = document.querySelector("#highlightGrid");
 // ==========================================
 
 function campaignCard(item, index, featured = false) {
+  const isUpcoming = item.type === "upcoming";
+
   return `
     <article
       class="${featured ? "highlight-card featured" : "campaign-card"} reveal"
@@ -116,9 +118,9 @@ function campaignCard(item, index, featured = false) {
 
       <button
         class="card-button"
-        data-campaign-id="${item.id}"
+        ${isUpcoming ? `data-register-campaign-id="${item.id}"` : `data-campaign-id="${item.id}"`}
       >
-        Xem chi tiết ↗
+        ${isUpcoming ? "Đăng ký ↗" : "Xem chi tiết ↗"}
       </button>
 
     </article>
@@ -199,6 +201,30 @@ function closeModal() {
 // ==========================================
 
 document.addEventListener("click", event => {
+  const registerButton = event.target.closest("[data-register-campaign-id]");
+
+  if (registerButton) {
+    const campaign = campaigns.find(
+      item => item.id === registerButton.dataset.registerCampaignId
+    );
+    const card = registerButton.closest(".campaign-card");
+    const joinSection = document.querySelector("#join");
+    const interestInput = document.querySelector('input[name="interest"]');
+
+    if (campaign && card) {
+      card.hidden = true;
+
+      if (interestInput && !interestInput.value) {
+        interestInput.value = campaign.title;
+      }
+
+      joinSection.scrollIntoView({ behavior: "smooth" });
+      document.querySelector('input[name="name"]').focus({ preventScroll: true });
+    }
+
+    return;
+  }
+
   const button = event.target.closest("[data-campaign-id]");
 
   if (button) {
