@@ -79,6 +79,7 @@ const highlightGrid = document.querySelector("#highlightGrid");
 // ==========================================
 
 function campaignCard(item, index, featured = false) {
+  // TÍNH NĂNG MỚI: campaign sắp tới dùng CTA đăng ký thay vì mở modal.
   const isUpcoming = item.type === "upcoming";
 
   return `
@@ -201,6 +202,7 @@ function closeModal() {
 // ==========================================
 
 document.addEventListener("click", event => {
+  // TÍNH NĂNG MỚI: ẩn card đã chọn và đưa người dùng tới form đăng ký.
   const registerButton = event.target.closest("[data-register-campaign-id]");
 
   if (registerButton) {
