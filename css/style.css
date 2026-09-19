@@ -1,276 +1,441 @@
+/* Áp dụng cho tất cả phần tử HTML. */
 *{
+    /* Khoảng cách bên ngoài phần tử. */
     margin:0;
+    /* Khoảng cách bên trong phần tử. */
     padding:0;
+    /* Tính kích thước gồm cả padding và border. */
     box-sizing:border-box
 }
+/* Khai báo các biến CSS dùng chung toàn trang. */
 :root{
-    --ink:#18211d;
-    --muted:#6f7772;
-    --paper:#f6f7f3;
-    --white:#fff;
-    --accent:#d9ef83;
-    --dark:#1b2921;
-    --line:#dfe4dc
+    --ink:#123044;
+    --muted:#607582;
+    --paper:#fefefe;
+    --white:#fefefe;
+    --accent:#01b0ee;
+    --dark:#123044;
+    --line:#dceaf0
 }
+/* Thiết lập cho toàn bộ tài liệu HTML. */
 html{
     scroll-behavior:smooth
 }
+/* Thiết lập giao diện chung của trang. */
 body{
+    /* Chọn kiểu chữ. */
     font-family:"Be Vietnam Pro",sans-serif;color:var(--ink);
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--paper);
+    /* Chiều cao mỗi dòng chữ. */
     line-height:1.7
 }
+/* Áp dụng cho các liên kết. */
 a{
+    /* Kiểu trang trí chữ, ví dụ gạch chân. */
     text-decoration:none;
+    /* Màu chữ. */
     color:inherit
 }
 .container{
+    /* Chiều rộng phần tử. */
     width:min(1160px,calc(100% - 48px));
+    /* Khoảng cách bên ngoài phần tử. */
     margin:auto
 }
 .section{
+    /* Khoảng cách bên trong phần tử. */
     padding:120px 0;
+    /* Cách định vị phần tử. */
     position:relative;
+    /* Quy định cách xử lý nội dung tràn ra ngoài. */
     overflow:hidden
 }
 .site-header{
+    /* Cách định vị phần tử. */
     position:sticky;
+    /* Khoảng cách từ cạnh trên. */
     top:0;z-index:20;
-    background:rgba(246,247,243,.88);
+    /* Màu nền hoặc nền của phần tử. */
+    background:rgba(254,254,254,.88);
+    /* Áp dụng hiệu ứng lên phần nền phía sau phần tử. */
     backdrop-filter:blur(16px);
-    border-bottom:1px solid rgba(223,228,220,.7)
+    /* Viền phía dưới phần tử. */
+    border-bottom:1px solid rgba(220,234,240,.7)
 }
 .navbar{
+    /* Chiều cao phần tử. */
     height:84px;
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Căn các phần tử con theo trục chính. */
     justify-content:space-between
 }
 .brand{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Khoảng cách giữa các phần tử con. */
     gap:12px
 }
 .brand-mark{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:grid;
     place-items:center;
+    /* Chiều rộng phần tử. */
     width:42px;
+    /* Chiều cao phần tử. */
     height:42px;
+    /* Viền của phần tử. */
     border:1px solid var(--ink);
+    /* Độ bo tròn góc. */
     border-radius:50%;
+    /* Độ đậm của chữ. */
     font-weight:800;font-size:20px
 }
 .brand strong,.brand small{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:block;
+    /* Chiều cao mỗi dòng chữ. */
     line-height:1.2
 }
 .brand strong{
+    /* Kích thước chữ. */
     font-size:17px;
+    /* Khoảng cách giữa các ký tự. */
     letter-spacing:1px
 }
 .brand small{
+    /* Kích thước chữ. */
     font-size:8px;
+    /* Khoảng cách giữa các ký tự. */
     letter-spacing:1.6px;
     margin-top:4px;
+    /* Màu chữ. */
     color:var(--muted)
 }
 .nav-links{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Khoảng cách giữa các phần tử con. */
     gap:34px;font-size:13px;
+    /* Độ đậm của chữ. */
     font-weight:600
 }
 .nav-links a{
+    /* Tạo hiệu ứng chuyển đổi mượt. */
     transition:opacity .2s
 }
+/* Thiết lập trạng thái khi rê chuột lên phần tử. */
 .nav-links a:hover{
+    /* Độ trong suốt. */
     opacity:.55
 }
 .nav-cta{
+    /* Viền của phần tử. */
     border:1px solid var(--ink);
+    /* Khoảng cách bên trong phần tử. */
     padding:11px 18px;
+    /* Độ bo tròn góc. */
     border-radius:999px
 }
 .menu-toggle{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:none;
+    /* Màu nền hoặc nền của phần tử. */
     background:none;
+    /* Viền của phần tử. */
     border:0;
+    /* Kiểu con trỏ chuột khi di chuyển lên phần tử. */
     cursor:pointer
 }
 .menu-toggle span{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:block;
+    /* Chiều rộng phần tử. */
     width:25px;
+    /* Chiều cao phần tử. */
     height:2px;
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--ink);
+    /* Khoảng cách bên ngoài phần tử. */
     margin:5px
 }
 .hero{
+    /* Chiều cao tối thiểu. */
     min-height:calc(100vh - 84px);
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center
 }
 .hero-grid{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:grid;
+    /* Thiết lập bố cục các cột trong Grid. */
     grid-template-columns:1.1fr .9fr;
+    /* Khoảng cách giữa các phần tử con. */
     gap:80px;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center
 }
 .eyebrow{
+    /* Kích thước chữ. */
     font-size:10px;
+    /* Khoảng cách giữa các ký tự. */
     letter-spacing:2.5px;
+    /* Chuyển đổi kiểu hiển thị chữ, ví dụ viết hoa. */
     text-transform:uppercase;
+    /* Độ đậm của chữ. */
     font-weight:800;
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Khoảng cách giữa các phần tử con. */
     gap:10px;color:var(--muted);
     margin-bottom:24px
 }
 .eyebrow span{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:inline-block;
+    /* Chiều rộng phần tử. */
     width:28px;
+    /* Chiều cao phần tử. */
     height:1px;
+    /* Màu nền hoặc nền của phần tử. */
     background:currentColor
 }
 .hero h1,.section-heading h2,.section-top h2,.join h2{
+    /* Kích thước chữ. */
     font-size:clamp(38px,5vw,67px);
+    /* Chiều cao mỗi dòng chữ. */
     line-height:1.18;
+    /* Khoảng cách giữa các ký tự. */
     letter-spacing:-2.8px;
+    /* Độ đậm của chữ. */
     font-weight:700
 }
 h1 em,h2 em{
     font-style:normal;
-    color:#82934b
+    /* Màu chữ. */
+    color:#01b0ee
 }
 .hero-text{
+    /* Chiều rộng tối đa. */
     max-width:490px;
+    /* Màu chữ. */
     color:var(--muted);
+    /* Kích thước chữ. */
     font-size:15px;
+    /* Khoảng cách bên ngoài phần tử. */
     margin:28px 0
 }
 .hero-actions{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Khoảng cách giữa các phần tử con. */
     gap:28px;
+    /* Cho phép phần tử con xuống dòng khi thiếu chỗ. */
     flex-wrap:wrap
 }
 .btn{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:inline-flex;align-items:center;justify-content:center;gap:24px;padding:15px 22px;border-radius:999px;font:inherit;font-size:12px;font-weight:700;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s}
+/* Thiết lập trạng thái khi rê chuột lên phần tử. */
 .btn:hover{
+    /* Biến đổi vị trí, kích thước hoặc góc của phần tử. */
     transform:translateY(-3px);box-shadow:0 10px 25px #1b29211a}
 .btn-primary{
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--dark);color:var(--white)}
 .btn-light{
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--accent);color:var(--dark)}
 .text-link{
+    /* Kích thước chữ. */
     font-size:12px;font-weight:700;border-bottom:1px solid var(--ink);padding-bottom:3px}
 .hero-meta{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;gap:45px;margin-top:80px}
 .hero-meta strong{display:block;font-size:24px;letter-spacing:-1px}.hero-meta span{display:block;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
 .hero-visual{
+    /* Cách định vị phần tử. */
     position:relative}
 .visual-frame{
+    /* Tỉ lệ giữa chiều rộng và chiều cao. */
     aspect-ratio:4/5;background:var(--dark);color:var(--white);padding:28px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
 .visual-frame:before{
+    /* Nội dung được tạo bằng pseudo-element. */
     content:"";position:absolute;width:330px;height:330px;border:1px solid #ffffff30;border-radius:50%;right:-140px;top:70px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff05}
 .visual-label,.visual-footer{
-    font-size:9px;letter-spacing:2px;color:#c3cec3;display:flex;justify-content:space-between}
+    /* Kích thước chữ. */
+    font-size:9px;letter-spacing:2px;color:#b8d5e2;display:flex;justify-content:space-between}
 .visual-content{
+    /* Cách định vị phần tử. */
     position:relative;z-index:1}.visual-number{font-size:150px;line-height:1;font-weight:800;color:var(--accent);letter-spacing:-10px}.visual-content p{font-size:22px;line-height:1.5;margin-top:25px}.visual-content strong{color:var(--accent)}
 .floating-note{
+    /* Cách định vị phần tử. */
     position:absolute;bottom:28px;left:-45px;background:var(--accent);padding:18px 23px;font-size:11px;font-weight:800;box-shadow:0 10px 35px #1b29211c}.floating-note span{margin-left:25px}
 .two-col{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:grid;grid-template-columns:1fr 1fr;gap:100px}.about{background:var(--white)}
 .about-copy{
+    /* Chiều rộng tối đa. */
     max-width:470px;color:var(--muted);font-size:14px}.about-copy p+p{margin-top:20px}.about-copy .text-link{display:inline-block;margin-top:30px;color:var(--ink)}
 .stats{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid var(--line);margin-top:100px;padding-top:35px}.stats strong{font-size:48px;letter-spacing:-2px;display:block}.stats span{font-size:11px;color:var(--muted)}
 .section-top{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;justify-content:space-between;align-items:end;gap:50px;margin-bottom:55px}.section-description{max-width:300px;color:var(--muted);font-size:13px}
 .campaign-grid{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .campaign-card,.highlight-card{
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--white);border:1px solid var(--line);padding:28px;transition:transform .25s,box-shadow .25s}.campaign-card:hover,.highlight-card:hover{transform:translateY(-7px);box-shadow:0 18px 40px #1b29210d}
 .card-top{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:65px}.card-index{font-size:11px;color:var(--muted)}.tag{font-size:9px;text-transform:uppercase;letter-spacing:1px;border:1px solid var(--line);padding:6px 9px;border-radius:999px}
 .card-date{
+    /* Kích thước chữ. */
     font-size:11px;color:var(--muted);margin-bottom:12px}.campaign-card h3,.highlight-card h3{font-size:20px;line-height:1.35;letter-spacing:-.7px;margin-bottom:15px}.campaign-card p,.highlight-card p{font-size:12px;color:var(--muted);margin-bottom:28px}.card-button{font-size:11px;font-weight:800;border-bottom:1px solid var(--ink);padding-bottom:3px}
 .highlights{
-    background:#edf0e9}.highlight-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}.highlight-card.featured{min-height:390px;background:var(--dark);color:var(--white);display:flex;flex-direction:column;justify-content:space-between}.highlight-card.featured p{color:#bdc7bf}.highlight-card.featured .tag{border-color:#ffffff35}.highlight-card.featured .card-button{border-color:var(--white)}.highlight-card:nth-child(2){background:var(--accent)}
+    /* Màu nền hoặc nền của phần tử. */
+    background:#eefaff}.highlight-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}.highlight-card.featured{min-height:390px;background:var(--dark);color:var(--white);display:flex;flex-direction:column;justify-content:space-between}.highlight-card.featured p{color:#b7d4e0}.highlight-card.featured .tag{border-color:#ffffff35}.highlight-card.featured .card-button{border-color:var(--white)}.highlight-card:nth-child(2){background:var(--accent)}
 .join{
-    background:var(--dark);color:var(--white)}.join-box{display:grid;grid-template-columns:1fr 1fr;gap:100px}.eyebrow.light{color:#c0c9c0}.join h2 em{color:var(--accent)}.join-box>div>p:last-child{color:#b9c3ba;font-size:13px;margin-top:28px;max-width:380px}.join-form{display:grid;grid-template-columns:1fr 1fr;gap:22px}.join-form label{font-size:11px;color:#c0c9c0}.join-form input{display:block;width:100%;background:transparent;border:0;border-bottom:1px solid #ffffff35;padding:12px 0;color:var(--white);outline:none;font:inherit;font-size:12px}.join-form input:focus{border-color:var(--accent)}.join-form input::placeholder{color:#77847a}.join-form .btn{margin-top:12px;width:max-content}.form-message{grid-column:1/-1;font-size:12px;color:var(--accent)}
+    /* Màu nền hoặc nền của phần tử. */
+    background:var(--dark);color:var(--white)}.join-box{display:grid;grid-template-columns:1fr 1fr;gap:100px}.eyebrow.light{color:#b8d5e2}.join h2 em{color:var(--accent)}.join-box>div>p:last-child{color:#b8d5e2;font-size:13px;margin-top:28px;max-width:380px}.join-form{display:grid;grid-template-columns:1fr 1fr;gap:22px}.join-form label{font-size:11px;color:#b8d5e2}.join-form input{display:block;width:100%;background:transparent;border:0;border-bottom:1px solid #ffffff35;padding:12px 0;color:var(--white);outline:none;font:inherit;font-size:12px}.join-form input:focus{border-color:var(--accent)}.join-form input::placeholder{color:#7b9aaa}.join-form .btn{margin-top:12px;width:max-content}.form-message{grid-column:1/-1;font-size:12px;color:var(--accent)}
 .footer{
-    background:var(--dark);color:var(--white);border-top:1px solid #ffffff18;padding:35px 0 25px}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}.footer p,.footer-links{font-size:11px;color:#aeb8af}.footer-links{display:flex;gap:25px}.copyright{font-size:10px;color:#77847a;margin-top:50px}
+    /* Màu nền hoặc nền của phần tử. */
+    background:var(--dark);color:var(--white);border-top:1px solid #ffffff18;padding:35px 0 25px}.footer-grid{display:flex;align-items:center;justify-content:space-between;gap:30px}.footer p,.footer-links{font-size:11px;color:#a8c4d1}.footer-links{display:flex;gap:25px}.copyright{font-size:10px;color:#7b9aaa;margin-top:50px}
 .modal{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:none;
+    /* Cách định vị phần tử. */
     position:fixed;
+    /* Đặt đồng thời khoảng cách trên, phải, dưới, trái. */
     inset:0;
+    /* Thứ tự lớp hiển thị; số lớn hơn nằm phía trước. */
     z-index:50;
+    /* Căn các phần tử con theo trục phụ. */
     align-items:center;
+    /* Căn các phần tử con theo trục chính. */
     justify-content:center;
+    /* Khoảng cách bên trong phần tử. */
     padding:24px}
 .modal.active{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex
 }
 .modal-backdrop{
+    /* Cách định vị phần tử. */
     position:absolute;
+    /* Đặt đồng thời khoảng cách trên, phải, dưới, trái. */
     inset:0;
+    /* Màu nền hoặc nền của phần tử. */
     background:#101a14b8;
+    /* Áp dụng hiệu ứng lên phần nền phía sau phần tử. */
     backdrop-filter:blur(8px)
 }
 .brand-logo {
+  /* Chiều rộng phần tử. */
   width: 48px;
+  /* Chiều cao phần tử. */
   height: 48px;
+  /* Cách hình ảnh vừa khung chứa. */
   object-fit: contain;
+  /* Độ bo tròn góc. */
   border-radius: 50%;
 }
 .visual-frame {
+  /* Tỉ lệ giữa chiều rộng và chiều cao. */
   aspect-ratio: 4 / 3;
+  /* Quy định cách xử lý nội dung tràn ra ngoài. */
   overflow: hidden;
 }
 
 .hero-image {
+  /* Chiều rộng phần tử. */
   width: 100%;
+  /* Chiều cao phần tử. */
   height: 100%;
+  /* Cách hình ảnh vừa khung chứa. */
   object-fit: cover;
+  /* Cách phần tử được hiển thị và bố trí. */
   display: block;
 }
 .modal-card{
+    /* Cách định vị phần tử. */
     position:relative;
+    /* Màu nền hoặc nền của phần tử. */
     background:var(--paper);
+    /* Màu chữ. */
     color:var(--ink);
+    /* Chiều rộng phần tử. */
     width:min(560px,100%);
+    /* Khoảng cách bên trong phần tử. */
     padding:48px;z-index:1;
+    /* Tạo bóng đổ. */
     box-shadow:0 30px 80px #0003}
 .modal-close{
+    /* Cách định vị phần tử. */
     position:absolute;
+    /* Khoảng cách từ cạnh phải. */
     right:22px;
+    /* Khoảng cách từ cạnh trên. */
     top:18px;
+    /* Viền của phần tử. */
     border:0;
+    /* Màu nền hoặc nền của phần tử. */
     background:none;
+    /* Kích thước chữ. */
     font-size:30px;
+    /* Kiểu con trỏ chuột khi di chuyển lên phần tử. */
     cursor:pointer}
 .modal-card h2{
+    /* Kích thước chữ. */
     font-size:35px;
+    /* Chiều cao mỗi dòng chữ. */
     line-height:1.2;
+    /* Khoảng cách giữa các ký tự. */
     letter-spacing:-1.2px;
     margin-bottom:15px}
 .modal-date{font-size:11px;
+    /* Màu chữ. */
     color:var(--muted);
     margin-bottom:20px}
 .modal-card>p:not(.eyebrow):not(.modal-date){
+        /* Kích thước chữ. */
         font-size:13px;
+        /* Màu chữ. */
         color:var(--muted);
         margin-bottom:25px}
 .modal-tags{
+    /* Cách phần tử được hiển thị và bố trí. */
     display:flex;gap:8px;
+    /* Cho phép phần tử con xuống dòng khi thiếu chỗ. */
     flex-wrap:wrap;
     margin-bottom:28px}
 .reveal{
+    /* Độ trong suốt. */
     opacity:0;
+    /* Biến đổi vị trí, kích thước hoặc góc của phần tử. */
     transform:translateY(28px);
+    /* Tạo hiệu ứng chuyển đổi mượt. */
     transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{
+        /* Độ trong suốt. */
         opacity:1;
+        /* Biến đổi vị trí, kích thước hoặc góc của phần tử. */
         transform:translateY(0)
  }
 .delay-1{
@@ -280,25 +445,40 @@ h1 em,h2 em{
         transition-delay:.22s
 }
 .hero-orb{
+    /* Cách định vị phần tử. */
     position:absolute;
+    /* Độ bo tròn góc. */
     border-radius:50%;
+    /* Áp dụng hiệu ứng hình ảnh như làm mờ. */
     filter:blur(1px);
+    /* Quy định phần tử có nhận sự kiện chuột hay không. */
     pointer-events:none
 }
 .orb-one{
+        /* Chiều rộng phần tử. */
         width:420px;
+        /* Chiều cao phần tử. */
         height:420px;
-        background:#e4edc3;
+        /* Màu nền hoặc nền của phần tử. */
+        background:#c9f1ff;
+        /* Khoảng cách từ cạnh phải. */
         right:-180px;
+        /* Khoảng cách từ cạnh trên. */
         top:-150px
-    }  
+    }
 .orb-two{
+    /* Chiều rộng phần tử. */
     width:180px;
+    /* Chiều cao phần tử. */
     height:180px;
-    background:#e8eee2;
+    /* Màu nền hoặc nền của phần tử. */
+    background:#e3f8ff;
+    /* Khoảng cách từ cạnh trái. */
     left:-80px;
+    /* Khoảng cách từ cạnh dưới. */
     bottom:20px
 }
+/* Áp dụng các quy tắc riêng cho màn hình nhỏ. */
 @media(max-width:850px){
     .section{padding:85px 0}
     .container{width:min(100% - 36px,600px)}
