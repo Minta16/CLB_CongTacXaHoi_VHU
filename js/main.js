@@ -79,7 +79,8 @@ const highlightGrid = document.querySelector("#highlightGrid");
 // ==========================================
 
 function campaignCard(item, index, featured = false) {
-  const isUpcoming = item.type === "upcoming";
+  // Tạm ẩn tính năng đăng ký trực tiếp từ card.
+  // const isUpcoming = item.type === "upcoming";
 
   return `
     <article
@@ -118,9 +119,9 @@ function campaignCard(item, index, featured = false) {
 
       <button
         class="card-button"
-        ${isUpcoming ? `data-register-campaign-id="${item.id}"` : `data-campaign-id="${item.id}"`}
+        data-campaign-id="${item.id}"
       >
-        ${isUpcoming ? "Đăng ký ↗" : "Xem chi tiết ↗"}
+        Xem chi tiết ↗
       </button>
 
     </article>
@@ -201,6 +202,7 @@ function closeModal() {
 // ==========================================
 
 document.addEventListener("click", event => {
+  /*
   const registerButton = event.target.closest("[data-register-campaign-id]");
 
   if (registerButton) {
@@ -224,6 +226,7 @@ document.addEventListener("click", event => {
 
     return;
   }
+  */
 
   const button = event.target.closest("[data-campaign-id]");
 
