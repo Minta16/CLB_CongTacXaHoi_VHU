@@ -9,6 +9,7 @@ const campaigns = [
     date: "12.10.2026",
     tag: "Thiện nguyện",
     title: "Áo ấm trao tay",
+    image: "assets/images/PHU09197.png",
     description:
       "Chương trình quyên góp và trao tặng vật phẩm thiết yếu đến những hoàn cảnh còn khó khăn. Thành viên có thể đồng hành ở các nhóm hậu cần, truyền thông và tổ chức.",
     tags: ["Quyên góp", "Cộng đồng", "Tình nguyện"]
@@ -19,6 +20,7 @@ const campaigns = [
     date: "24.10.2026",
     tag: "Giáo dục",
     title: "Cùng em đến trường",
+    image: "assets/images/IMG_5623.JPG",
     description:
       "Hoạt động hỗ trợ học tập và tạo không gian vui chơi, giao lưu cho trẻ em. Chương trình cần tình nguyện viên hỗ trợ tổ chức và hướng dẫn hoạt động.",
     tags: ["Trẻ em", "Giáo dục", "Kết nối"]
@@ -29,6 +31,7 @@ const campaigns = [
     date: "08.11.2026",
     tag: "Môi trường",
     title: "Một ngày xanh",
+    image: "assets/images/IMG_6803.JPG",
     description:
       "Chiến dịch nâng cao ý thức bảo vệ môi trường thông qua hoạt động làm sạch không gian công cộng và truyền thông lối sống xanh.",
     tags: ["Môi trường", "Truyền thông", "Hành động"]
@@ -49,7 +52,7 @@ const highlights = [
     title: "Kết nối yêu thương",
     description:
       "Những buổi thăm hỏi, trao quà và sẻ chia đã tạo nên nhiều khoảnh khắc đáng nhớ giữa các thành viên và cộng đồng.",
-    image: "assets/images/ket-noi-yeu-thuong.jpg",
+    image: "assets/images/LETU4525.jpg",
     tags: ["Chia sẻ", "Đồng hành"]
   },
   {
@@ -60,7 +63,7 @@ const highlights = [
     title: "Ngày hội tình nguyện",
     description:
       "Không gian để sinh viên gặp gỡ, học hỏi kỹ năng và cùng nhau thực hiện các hoạt động có ích.",
-    image: "assets/images/ngay-hoi-tinh-nguyen.jpg",
+    image: "assets/images/IMG_6803.JPG",
     tags: ["Sinh viên", "Kỹ năng"]
   }
 ];
@@ -79,13 +82,17 @@ const highlightGrid = document.querySelector("#highlightGrid");
 // ==========================================
 
 function campaignCard(item, index, featured = false) {
-  // TÍNH NĂNG MỚI: campaign sắp tới dùng CTA đăng ký thay vì mở modal.
   const isUpcoming = item.type === "upcoming";
 
+  const cardClass =
+    featured
+      ? "highlight-card featured"
+      : item.type === "highlight"
+        ? "highlight-card"
+      : "campaign-card";
+
   return `
-    <article
-      class="${featured ? "highlight-card featured" : "campaign-card"} reveal"
-    >
+    <article class="${cardClass} reveal">
 
       ${
         item.image
@@ -133,10 +140,14 @@ function campaignCard(item, index, featured = false) {
 // HIỂN THỊ DANH SÁCH
 // ==========================================
 
+// Hiển thị chiến dịch sắp tới
 upcomingGrid.innerHTML = campaigns
-  .map(item => campaignCard(item))
+  .map((item, index) => campaignCard(item, index))
   .join("");
 
+
+// Hiển thị chiến dịch đã thực hiện
+// Hai card Highlight sử dụng cùng một class
 highlightGrid.innerHTML = highlights
   .map((item, index) => campaignCard(item, index, index === 0))
   .join("");
@@ -156,8 +167,12 @@ const modalTags = document.querySelector("#modalTags");
 const modalType = document.querySelector("#modalType");
 
 
-// Mở modal
+// ==========================================
+// MỞ MODAL
+// ==========================================
+
 function openModal(id) {
+
   const item = allCampaigns.find(
     campaign => campaign.id === id
   );
@@ -188,8 +203,12 @@ function openModal(id) {
 }
 
 
-// Đóng modal
+// ==========================================
+// ĐÓNG MODAL
+// ==========================================
+
 function closeModal() {
+
   modal.classList.remove("active");
   modal.setAttribute("aria-hidden", "true");
 
@@ -202,7 +221,6 @@ function closeModal() {
 // ==========================================
 
 document.addEventListener("click", event => {
-  // TÍNH NĂNG MỚI: ẩn card đã chọn và đưa người dùng tới form đăng ký.
   const registerButton = event.target.closest("[data-register-campaign-id]");
 
   if (registerButton) {
@@ -236,20 +254,29 @@ document.addEventListener("click", event => {
   if (event.target.matches("[data-close-modal]")) {
     closeModal();
   }
+
 });
 
 
-// Nút đóng modal
+// ==========================================
+// NÚT ĐÓNG MODAL
+// ==========================================
+
 document
   .querySelector("#modalClose")
   .addEventListener("click", closeModal);
 
 
-// Đóng modal bằng phím ESC
+// ==========================================
+// ĐÓNG MODAL BẰNG PHÍM ESC
+// ==========================================
+
 document.addEventListener("keydown", event => {
+
   if (event.key === "Escape") {
     closeModal();
   }
+
 });
 
 
@@ -261,27 +288,36 @@ const menuToggle = document.querySelector("#menuToggle");
 const navLinks = document.querySelector("#navLinks");
 
 menuToggle.addEventListener("click", () => {
+
   const open = navLinks.classList.toggle("open");
 
   menuToggle.setAttribute(
     "aria-expanded",
     String(open)
   );
+
 });
 
 
-// Đóng menu sau khi chọn liên kết
+// ==========================================
+// ĐÓNG MENU SAU KHI CHỌN LIÊN KẾT
+// ==========================================
+
 document
   .querySelectorAll(".nav-links a")
   .forEach(link => {
+
     link.addEventListener("click", () => {
+
       navLinks.classList.remove("open");
 
       menuToggle.setAttribute(
         "aria-expanded",
         "false"
       );
+
     });
+
   });
 
 
@@ -290,26 +326,40 @@ document
 // ==========================================
 
 const observer = new IntersectionObserver(
+
   entries => {
+
     entries.forEach(entry => {
+
       if (entry.isIntersecting) {
+
         entry.target.classList.add("visible");
 
         observer.unobserve(entry.target);
+
       }
+
     });
+
   },
+
   {
     threshold: 0.12
   }
+
 );
 
 
-// Theo dõi các phần tử có class reveal
+// ==========================================
+// THEO DÕI CÁC PHẦN TỬ REVEAL
+// ==========================================
+
 document
   .querySelectorAll(".reveal")
   .forEach(element => {
+
     observer.observe(element);
+
   });
 
 
@@ -320,6 +370,7 @@ document
 document
   .querySelector("#joinForm")
   .addEventListener("submit", event => {
+
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -335,14 +386,17 @@ document
       !data.studentId ||
       !data.interest
     ) {
+
       message.textContent =
         "Vui lòng điền đầy đủ thông tin.";
 
       return;
+
     }
 
     message.textContent =
       "Đăng ký đã được ghi nhận trên bản demo. Hãy kết nối form với backend để lưu dữ liệu thực tế.";
 
     form.reset();
+
   });
