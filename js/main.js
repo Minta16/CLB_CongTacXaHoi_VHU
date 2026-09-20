@@ -81,12 +81,14 @@ const highlightGrid = document.querySelector("#highlightGrid");
 // TẠO CARD CHIẾN DỊCH
 // ==========================================
 
-function campaignCard(item, index) {
+function campaignCard(item, index, featured = false) {
+  const isUpcoming = item.type === "upcoming";
 
-  // Highlight dùng chung một class
   const cardClass =
-    item.type === "highlight"
-      ? "highlight-card"
+    featured
+      ? "highlight-card featured"
+      : item.type === "highlight"
+        ? "highlight-card"
       : "campaign-card";
 
   return `
@@ -124,9 +126,9 @@ function campaignCard(item, index) {
 
       <button
         class="card-button"
-        data-campaign-id="${item.id}"
+        ${isUpcoming ? `data-register-campaign-id="${item.id}"` : `data-campaign-id="${item.id}"`}
       >
-        Xem chi tiết ↗
+        ${isUpcoming ? "Đăng ký ↗" : "Xem chi tiết ↗"}
       </button>
 
     </article>
@@ -147,7 +149,7 @@ upcomingGrid.innerHTML = campaigns
 // Hiển thị chiến dịch đã thực hiện
 // Hai card Highlight sử dụng cùng một class
 highlightGrid.innerHTML = highlights
-  .map((item, index) => campaignCard(item, index))
+  .map((item, index) => campaignCard(item, index, index === 0))
   .join("");
 
 
@@ -163,6 +165,7 @@ const modalDate = document.querySelector("#modalDate");
 const modalDescription = document.querySelector("#modalDescription");
 const modalTags = document.querySelector("#modalTags");
 const modalType = document.querySelector("#modalType");
+const modalJoin = document.querySelector("#modalJoin");
 
 
 // ==========================================
@@ -194,6 +197,8 @@ function openModal(id) {
     .map(tag => `<span class="tag">${tag}</span>`)
     .join("");
 
+  modalJoin.hidden = item.type !== "upcoming";
+
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
 
@@ -219,6 +224,29 @@ function closeModal() {
 // ==========================================
 
 document.addEventListener("click", event => {
+  const registerButton = event.target.closest("[data-register-campaign-id]");
+
+  if (registerButton) {
+    const campaign = campaigns.find(
+      item => item.id === registerButton.dataset.registerCampaignId
+    );
+    const card = registerButton.closest(".campaign-card");
+    const joinSection = document.querySelector("#join");
+    const interestInput = document.querySelector('input[name="interest"]');
+
+    if (campaign && card) {
+      card.hidden = true;
+
+      if (interestInput && !interestInput.value) {
+        interestInput.value = campaign.title;
+      }
+
+      joinSection.scrollIntoView({ behavior: "smooth" });
+      document.querySelector('input[name="name"]').focus({ preventScroll: true });
+    }
+
+    return;
+  }
 
   const button = event.target.closest("[data-campaign-id]");
 

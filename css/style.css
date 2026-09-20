@@ -265,6 +265,9 @@ h1 em,h2 em{
     display:flex;gap:8px;
     flex-wrap:wrap;
     margin-bottom:28px}
+.modal-card #modalJoin[hidden]{
+    display:none !important
+}
 .reveal{
     opacity:0;
     transform:translateY(28px);
