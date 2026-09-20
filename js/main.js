@@ -165,6 +165,7 @@ const modalDate = document.querySelector("#modalDate");
 const modalDescription = document.querySelector("#modalDescription");
 const modalTags = document.querySelector("#modalTags");
 const modalType = document.querySelector("#modalType");
+const modalJoin = document.querySelector("#modalJoin");
 
 
 // ==========================================
@@ -195,6 +196,8 @@ function openModal(id) {
   modalTags.innerHTML = item.tags
     .map(tag => `<span class="tag">${tag}</span>`)
     .join("");
+
+  modalJoin.hidden = item.type !== "upcoming";
 
   modal.classList.add("active");
   modal.setAttribute("aria-hidden", "false");
